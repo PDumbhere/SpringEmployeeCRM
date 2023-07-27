@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title th:text="${processSuccessTitle}">Registration Confirmation</title>
+</head>
+
+<body>
+
+	<h2 th:text="${processSuccessMessage}">User Registered successfully!</h2>
+	
+	<hr>
+	
+	<a th:href="@{/viewEmployees}">Return to Employees List</a>
+
+</body>
+
+</html>

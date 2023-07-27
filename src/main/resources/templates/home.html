@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<title>Company Home page</title>
+</head>
+
+<body>
+	<h2>Company Home page</h2>
+	<hr>
+	
+	<p>Welcome to PracticeCoding company home page!</p>
+	
+	<hr>
+	
+	<!-- display user name and role(s) -->
+	
+	<p>
+		User: <span sec:authentication="principal.username"></span>
+		<br>
+		<br>
+		Role(s): <span sec:authentication="principal.authorities"></span>
+	</p>
+	<br>
+	
+	<a th:href="@{/seePersonalInfo}">See your Personal Details</a>
+	<br>
+	<div sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+		
+		<!-- Add link for viewing list of employees -->
+		<p>
+			<a th:href="@{/viewEmployees}">See the list of employees</a>
+	</div>
+	<br>
+	<div sec:authorize="hasRole('ADMIN')">
+	
+		<!-- Add link for employee registration form -->
+		<p>
+			<a th:href="@{/register/showRegistrationForm}">Register a new Employee</a>
+		</p>
+	
+	</div>
+	<br>
+	
+	<!-- Add logout button -->
+	<form action="#" th:action="@{/logout}" method="post">
+	
+		<input type="submit" value="Logout">
+	
+	</form>
+</body>	  
+	  
+</html>

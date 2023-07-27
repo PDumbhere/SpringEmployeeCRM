@@ -1,0 +1,19 @@
+Step 1 :- Create the new user and new database for this project in MySQL
+Step 2 :- Create user and authorities table following the springsecurity standard structure
+
+Step 3 :- Create Spring securityConfig class.
+
+Step 4 :- Create Login Html page
+
+Step 5 :- Create Login Controller
+
+Step 6 :- Create Home html page
+Step 7 :- Add Logout support in home page.
+
+Step 8 :- Create Employee class for adding it to web model attribute
+Step 9 :- Create RegistrationController and add form display mapping
+Step 10 :- Create registration form for new employee
+Step 11 :- Create logic in registrationController for processing information and 
+			registering new employee.
+Step 12 :- Create registration confirmation html page and add link to return home.
+			

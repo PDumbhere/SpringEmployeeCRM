@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+	<title>Register new Employee Form</title>
+	<meta charset="utf-8">
+
+</head>
+
+<body>
+
+	<h3 th:text=${heading}></h3>
+	<hr>
+	<div th:if="${editable == 'true'}">
+		<div sec:authorize="hasRole('ADMIN')" >
+				
+				<!-- Adding link for editing employees -->
+			<a th:href="@{register/updateEmployee(employeeId=${employeeInfo.id})}">
+				Update Employee
+			</a>
+		</div>	
+	</div>
+			<br/>
+	<form action="#" th:action="${processName}"
+					 th:object="${employeeInfo}" method="POST">
+			<div th:if="${registrationError!=null}">
+				<i th:text="${registrationError}"></i>
+				
+			</div>
+			
+			
+			
+			<!-- Employee Name -->	
+				<input type="hidden" th:field="*{id}"> 
+				<input type="text" th:field="*{firstName}" placeholder="First Name" th:disabled="${disabled}"/>	
+				<br><br>
+				<input type="text" th:field="*{middleName}" placeholder="Middle Name" th:disabled="${disabled}"/> 
+				<br><br>
+				<input type="text" th:field="*{lastName}" placeholder="Last Name" th:disabled="${disabled}"/> 
+				<br><br>
+				<input type="text" th:field="*{email}" placeholder="Email Id" th:disabled="${disabled}"/> 
+				<!-- Insert a hidden field for username -->
+				<input type="hidden" th:field="*{username}">
+				<!-- Insert a hidden field for employeeDetails.id -->
+				<input type="hidden" th:field="*{employeeDetails.id}">
+				<br><br>
+				<input type="text" th:field="*{employeeDetails.phone}" placeholder="Enter Phone/Mobile"  th:disabled="${disabled}"/> 
+				<br><br>
+				<input type="number" th:field="*{employeeDetails.age}" placeholder="Enter Age" th:disabled="${disabled}"/> 
+				<br><br>
+				<label>Sex:</label>
+				<input type="radio" th:field="*{employeeDetails.sex}" value="Male"/ th:disabled="${disabled}"> Male
+				<input type="radio" th:field="*{employeeDetails.sex}" value="Female" th:disabled="${disabled}"/> Female
+				<br><br>
+				<label>Marital Status:</label>
+				<input type="radio" th:field="*{employeeDetails.maritalStatus}" value="Married" th:disabled="${disabled}"/> Married
+				<input type="radio" th:field="*{employeeDetails.maritalStatus}" value="Unmarried" th:disabled="${disabled}"/> Unmarried
+				<input type="radio" th:field="*{employeeDetails.maritalStatus}" value="Divorced" th:disabled="${disabled}"/> Divorced
+				<br><br>
+				<label>Address</label>
+				<textarea rows="3" cols="15" th:field=*{employeeDetails.address} th:disabled="${disabled}"></textarea>
+				<input type="submit" value="Register" th:disabled="${disabled}"/>
+					 
+	</form>
+	<hr>
+	
+	<a th:href="@{/}">Return to Home</a>
+	<br><br>
+	<div sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+		<a th:href="@{/viewEmployees}">View Employee List</a>
+	</div>
+
+</body>
+
+</html>
